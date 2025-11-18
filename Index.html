@@ -3,25 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AquaVend Kenya | Smart Water Vending Machines</title>
+  <title>Aqua Vend Kenya | Smart Water Vending Machines</title>
+
   <style>
+    /* Global Style */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #f4f8fb;
       color: #222;
       line-height: 1.6;
+      transition: background 0.4s ease, color 0.4s ease;
     }
-    header {
+
+    /* DARK MODE */
+    body.dark {
+      background-color: #0d1117;
+      color: #e5e5e5;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
       background: #0077b6;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #0096c7;
+      transform: scale(1.05);
+    }
+
+    /* Header */
+    header {
+      background: #0096c7;
       color: white;
       padding: 2rem 1rem;
       text-align: center;
+      transition: 0.4s ease;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
+
+    body.dark header {
+      background: #003f63;
     }
+
+    /* Sections */
     section {
       padding: 2rem 1.5rem;
       max-width: 900px;
@@ -30,37 +65,64 @@
       margin-bottom: 1rem;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: 0.4s ease;
     }
+
+    body.dark section {
+      background: #1e1e1e;
+      box-shadow: 0 4px 10px rgba(255,255,255,0.07);
+    }
+
+    /* Titles */
     h2 {
       color: #0077b6;
       margin-bottom: 0.5rem;
+      transition: 0.4s ease;
     }
+    body.dark h2 { color: #63d4ff; }
+
+    /* Aqua Icons */
     ul {
       list-style-type: "💧 ";
       padding-left: 1.2rem;
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 1rem;
-    }
-    .gallery img {
+
+    /* IMAGE SLIDESHOW */
+    .slideshow {
+      position: relative;
       width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      height: 260px;
+      overflow: hidden;
+      border-radius: 15px;
     }
-    .gallery img:hover {
-      transform: scale(1.03);
+
+    .slide {
+      width: 100%;
+      height: 260px;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease;
+      object-fit: cover;
     }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    /* Contact Section */
     .contact {
       text-align: center;
-      background: #0077b6;
+      background: #0096c7;
       color: white;
       padding: 2rem 1rem;
       border-radius: 12px;
+      transition: 0.4s;
     }
+
+    body.dark .contact {
+      background: #003f63;
+    }
+
     .contact a {
       color: white;
       font-weight: bold;
@@ -70,16 +132,40 @@
       border-radius: 8px;
       display: inline-block;
       margin-top: 10px;
+      transition: 0.3s ease;
     }
+
+    .contact a:hover {
+      background: #48cae4;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
       background: #023e8a;
       color: white;
+      transition: 0.4s ease;
+    }
+    body.dark footer { background: #001f3f; }
+
+    /* Video Section */
+    .video-box {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
     }
   </style>
 </head>
+
 <body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+  </button>
+
   <header>
     <h1>AquaVend Kenya</h1>
     <p>Smart, Reliable & Profitable Water Vending Machines</p>
@@ -90,7 +176,6 @@
     <p>
       At <strong>AquaVend Kenya</strong>, we design and build automated water vending machines
       that help you run a clean water business efficiently and profitably.
-      Our systems combine hardware precision with easy operation.
     </p>
   </section>
 
@@ -98,57 +183,72 @@
     <h2>Why Choose AquaVend?</h2>
     <ul>
       <li>💧 Accurate dispensing — every litre measured precisely.</li>
-      <li>💧 Energy-efficient 12V system.</li>
-      <li>💧 Adjustable flow for water and thicker liquids like cooking oil.</li>
-      <li>💧 Easy setup, ideal for small entrepreneurs and community kiosks.</li>
+      <li>💧 12V energy-efficient system.</li>
+      <li>💧 Adjustable flow for water and cooking oil.</li>
+      <li>💧 Easy setup for small entrepreneurs.</li>
     </ul>
   </section>
 
   <section>
-    <h2>How It Works</h2>
-    <ol>
-      <li>Customer selects amount or presses the # button for 1 litre (Ksh 75).</li>
-      <li>The machine dispenses automatically and switches off when done.</li>
-      <li>Simple to refill and maintain — no complex setup required.</li>
-    </ol>
-  </section>
-
-  <section>
     <h2>Our Machines</h2>
-    <p>Here are some of our vending machines in action:</p>
+    <p>Automatic slideshow of some of our designs:</p>
 
-    <div class="gallery">
-      <img src="machine 1.png" alt="Water vending machine 1">
-      <img src="machine 3.jpg" alt="Water vending machine 3">
-      <img src="machine 4.jpg" alt="Water vending machine 4">
+    <!-- SLIDESHOW -->
+    <div class="slideshow">
+      <img class="slide active" src="machine1.jpg" alt="Machine 1">
+      <img class="slide" src="machine2.jpg" alt="Machine 2">
+      <img class="slide" src="machine2.jpg" alt="Machine 3">
+      <img class="slide" src="machine2.jpg" alt="Machine 4">
+      <img class="slide" src="machine3.jpg" alt="Machine 5">
     </div>
-
-    <p style="margin-top:1rem; font-size: 0.9rem;">
-      (Tip: You can replace these photos by uploading your own images into your GitHub repo — see guide below.)
-    </p>
   </section>
 
   <section>
-    <h2>Customer Feedback</h2>
-    <blockquote>
-      “The vending machine from AquaVend works perfectly! Reliable and easy to use.”<br>
-      — <em>Faith M., Kiambu</em>
-    </blockquote>
-    <blockquote>
-      “I started earning profit in my first month. Great support and design.”<br>
-      — <em>Brian N., Nakuru</em>
-    </blockquote>
+    <h2>Demo Video</h2>
+    <p>Watch how our vending machine works:</p>
+
+    <!-- VIDEO -->
+    <video class="video-box" controls>
+      <source src="demo.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
   </section>
 
   <section class="contact">
     <h2>Contact Us</h2>
-    <p>📞 <strong>+254 795805814</strong></p>
-    <p>📧 aquavendkenya@gmail.com</p>
-    <a href="https://wa.me/254795805814text=Hi%20I%20saw%20your%20water%20vending%20machines" target="_blank">Chat on WhatsApp</a>
+    <p>📞 <strong>+254 795 805 814</strong></p>
+    <p>📧 kevinatm24@gmail.com</p>
+    <a href="https://wa.me/254795805814" target="_blank">Chat on WhatsApp</a>
   </section>
 
   <footer>
     <p>© 2025 AquaVend Kenya. All Rights Reserved.</p>
   </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* Slideshow */
+    let index = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function startSlideshow() {
+      slides.forEach(slide => slide.classList.remove("active"));
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }
+
+    setInterval(startSlideshow, 3000);
+
+    /* DARK MODE REMEMBER CHOICE */
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+    }
+
+    if (localStorage.getItem("darkMode") === "true") {
+      document.body.classList.add("dark");
+    }
+  </script>
+
 </body>
 </html>
