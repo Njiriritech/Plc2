@@ -43,7 +43,6 @@
       transform: scale(1.05);
     }
 
-    /* Header */
     header {
       background: #0096c7;
       color: white;
@@ -56,7 +55,6 @@
       background: #003f63;
     }
 
-    /* Sections */
     section {
       padding: 2rem 1.5rem;
       max-width: 900px;
@@ -73,7 +71,6 @@
       box-shadow: 0 4px 10px rgba(255,255,255,0.07);
     }
 
-    /* Titles */
     h2 {
       color: #0077b6;
       margin-bottom: 0.5rem;
@@ -81,35 +78,33 @@
     }
     body.dark h2 { color: #63d4ff; }
 
-    /* Aqua Icons */
     ul {
       list-style-type: "💧 ";
       padding-left: 1.2rem;
     }
 
-    /* IMAGE SLIDESHOW */
+    /* SLIDESHOW – INCREASED HEIGHT */
     .slideshow {
       position: relative;
       width: 100%;
-      height: 260px;
+      height: 380px; /* increased from 260px */
       overflow: hidden;
       border-radius: 15px;
     }
 
     .slide {
       width: 100%;
-      height: 260px;
+      height: 100%;
       position: absolute;
       opacity: 0;
       transition: opacity 1s ease;
-      object-fit: cover;
+      object-fit: cover; /* keeps images clean */
     }
 
     .slide.active {
       opacity: 1;
     }
 
-    /* Contact Section */
     .contact {
       text-align: center;
       background: #0096c7;
@@ -140,7 +135,6 @@
       transform: scale(1.05);
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
@@ -148,13 +142,9 @@
       color: white;
       transition: 0.4s ease;
     }
-    body.dark footer { background: #001f3f; }
 
-    /* Video Section */
-    .video-box {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 15px;
+    body.dark footer {
+      background: #001f3f;
     }
   </style>
 </head>
@@ -197,21 +187,11 @@
     <div class="slideshow">
       <img class="slide active" src="machine1.jpg" alt="Machine 1">
       <img class="slide" src="machine2.jpg" alt="Machine 2">
-      <img class="slide" src="machine2.jpg" alt="Machine 3">
-      <img class="slide" src="machine2.jpg" alt="Machine 4">
-      <img class="slide" src="machine3.jpg" alt="Machine 5">
+      <img class="slide" src="machine3.jpg" alt="Machine 3">
+      <img class="slide" src="machine4.jpg" alt="Machine 5">
+      <img class="slide" src="machine5.jpg" alt="Machine 5">
+
     </div>
-  </section>
-
-  <section>
-    <h2>Demo Video</h2>
-    <p>Watch how our vending machine works:</p>
-
-    <!-- VIDEO -->
-    <video class="video-box" controls>
-      <source src="demo.mp4" type="video/mp4">
-      Your browser does not support video.
-    </video>
   </section>
 
   <section class="contact">
@@ -239,7 +219,7 @@
 
     setInterval(startSlideshow, 3000);
 
-    /* DARK MODE REMEMBER CHOICE */
+    /* Dark Mode Memory */
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
       localStorage.setItem("darkMode", document.body.classList.contains("dark"));
