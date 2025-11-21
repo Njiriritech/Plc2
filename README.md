@@ -14,10 +14,10 @@ AquaVend Kenya builds reliable and energy-efficient vending machines that help e
 - LCD display with keypad control
 - Low power usage (12V)
 
-<## 🛠 How to Update the Website
+< !--## 🛠 How to Update the Website
 1. Edit the `index.html` file to change text or add new photos.
 2. Upload new images to the repository (make sure names match the code).
-3. Your site auto-updates in a few minutes.>
+3. Your site auto-updates in a few minutes.-->
 
 ## 📞 Contact
 **Email:** kevinatm24@gmail.com  
