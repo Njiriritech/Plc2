@@ -4,55 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AquaVend Kenya | Smart Water Vending Solutions</title>
+
   <style>
-    /* ============ Reset & Base ============ */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* ============ RESET ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
       color: #222;
-      background-color: #f4f8fb;
       line-height: 1.6;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
 
-    /* ============ Header / Hero ============ */
+    /* ============ HERO SECTION ============ */
     header.hero {
       background: linear-gradient(135deg, #00b4d8, #0077b6);
       color: white;
-      padding: 4rem 1rem;
       text-align: center;
+      padding: 4rem 1rem;
     }
-    header.hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-    header.hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    header.hero .cta-button {
-      background: #caf0f8;
-      color: #0077b6;
-      padding: 0.8rem 1.6rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
-    }
-    header.hero .cta-button:hover {
-      transform: scale(1.05);
-      background: #90e0ef;
-    }
+    header.hero h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    header.hero p { font-size: 1.2rem; margin-bottom: 1.5rem; }
 
-    /* ============ Services / Offerings ============ */
+    /* WhatsApp CTA */
+    .cta-button {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .cta-button:hover { transform: scale(1.05); }
+
+    /* ============ SERVICES SECTION ============ */
     .services {
       padding: 3rem 1rem;
       max-width: 1000px;
@@ -65,178 +52,202 @@
     }
     .service-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
     .card {
       background: white;
+      padding: 2rem;
       border-radius: 12px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: 0.3s;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-    }
-    .card h3 {
-      color: #00b4d8;
-      margin-bottom: 1rem;
-    }
-    .card p {
-      font-size: 0.95rem;
-    }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { color: #0077b6; margin-bottom: 0.8rem; }
 
-    /* ============ Why Us / About ============ */
+    /* ============ ABOUT SECTION ============ */
     .about {
       background: #caf0f8;
       padding: 3rem 1rem;
-    }
-    .about h2 {
       text-align: center;
-      color: #0077b6;
-      margin-bottom: 1.5rem;
     }
     .about p {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
-      font-size: 1rem;
     }
 
-    /* ============ Testimonials ============ */
-    .testimonials {
-      padding: 3rem 1rem;
+    /* ============ SLIDESHOW SECTION ============ */
+    .slideshow-container {
+      position: relative;
       max-width: 900px;
-      margin: auto;
+      margin: 2rem auto;
     }
-    .testimonials h2 {
-      text-align: center;
-      color: #0077b6;
-      margin-bottom: 2rem;
+
+    .slide {
+      display: none;
     }
-    .testimonial-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    .testimonial {
-      background: white;
-      padding: 2rem;
+
+    .slide img {
+      width: 100%;
+      height: auto;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-    }
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    .testimonial .name {
-      font-weight: bold;
-      text-align: right;
-      color: #0077b6;
     }
 
-    /* ============ Call to Action ============ */
-    .cta-section {
-      text-align: center;
-      padding: 3rem 1rem;
+    /* Fade animation */
+    .fade {
+      animation-name: fadeEffect;
+      animation-duration: 1.2s;
     }
-    .cta-section button {
-      background: #0077b6;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
+
+    @keyframes fadeEffect {
+      from { opacity: 0.3; }
+      to   { opacity: 1; }
+    }
+
+    /* Next/Prev buttons */
+    .prev, .next {
       cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
+      position: absolute;
+      top: 50%;
+      padding: 12px;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      user-select: none;
+      transform: translateY(-50%);
     }
-    .cta-section button:hover {
-      background: #005f8a;
-      transform: scale(1.05);
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .prev:hover, .next:hover {
+      background: rgba(0,0,0,0.7);
     }
 
-    /* ============ Footer ============ */
+    /* ============ FOOTER ============ */
     footer {
       background: #023e8a;
       color: white;
-      padding: 2rem 1rem;
       text-align: center;
-    }
-    footer p {
-      margin-bottom: 0.5rem;
-    }
-    footer a {
-      color: #caf0f8;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO / BANNER -->
+  <!-- HERO -->
   <header class="hero">
     <h1>AquaVend Kenya</h1>
     <p>Smart & Automated Water Vending Machines for Entrepreneurs and Communities.</p>
-    <button class="cta-button" onclick="location.href='#services'">Explore Services</button>
+    <button class="cta-button" onclick="location.href='https://wa.me/254795805814'">
+      💬 WhatsApp Us
+    </button>
   </header>
 
   <!-- SERVICES -->
-  <section id="services" class="services">
+  <section class="services">
     <h2>What We Offer</h2>
+
     <div class="service-cards">
       <div class="card">
         <h3>Machine Sales</h3>
-        <p>We sell high-quality, automated water vending machines tailored for business owners and water kiosks.</p>
+        <p>High-quality automated water vending machines for water kiosks & small businesses.</p>
       </div>
+
       <div class="card">
         <h3>Installation & Setup</h3>
-        <p>Professional installation to help you setup the vending machine and integrate it with your water supply system.</p>
+        <p>Professional installation and optimal machine setup for your environment.</p>
       </div>
+
       <div class="card">
-        <h3>Maintenance & Repairs</h3>
-        <p>Regular servicing to keep your machine working smoothly and predictably.</p>
+        <h3>Maintenance & Repair</h3>
+        <p>Full servicing, repairs, and system checks to keep your machine running smoothly.</p>
       </div>
+
       <div class="card">
         <h3>Training & Support</h3>
-        <p>Training on how to use and manage your vending setup, plus customer support when you need it.</p>
+        <p>Full operational training and continued support for your business success.</p>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT / WHY US -->
+  <!-- ABOUT -->
   <section class="about">
     <h2>Why AquaVend?</h2>
     <p>
-      At AquaVend Kenya, we are passionate about helping small business owners earn more, provide clean water, and run efficient operations.
-      Our machines combine modern hardware, precision flow control, and durable design to deliver great performance with minimal downtime.
+      AquaVend Kenya provides durable, precise, and user-friendly vending machines.
+      We help entrepreneurs earn more by offering clean and affordable water while keeping maintenance simple.
     </p>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <h2>What Our Customers Say</h2>
-    <div class="testimonial-list">
-      <div class="testimonial">
-        <p>“This vending machine has totally changed our daily water business — customers come daily and it's very reliable.”</p>
-        <div class="name">— Faith M., Kiambu</div>
-      </div>
-      <div class="testimonial">
-        <p>“I installed two units in my community — now people pay per litre and we make a steady income.”</p>
-        <div class="name">— Brian N., Nakuru</div>
-      </div>
-    </div>
-  </section>
+  <!-- OUR MACHINES (Your Slideshow) -->
+  <section>
+    <h2 style="text-align:center; color:#0077b6; margin-top:2rem;">Our Machines</h2>
+    <p style="text-align:center;">Automatic slideshow with fade effect & navigation</p>
 
-  <!-- CALL TO ACTION -->
-  <section class="cta-section">
-    <button onclick="location.href='mailto:kevinatm24@gmail.com'">Request a Demo / Quote</button>
+    <div class="slideshow-container">
+
+      <div class="slide fade">
+        <img src="machine1.jpg" alt="Machine 1">
+      </div>
+
+      <div class="slide fade">
+        <img src="machine2.jpg" alt="Machine 2">
+      </div>
+
+      <div class="slide fade">
+        <img src="machine3.jpg" alt="Machine 3">
+      </div>
+
+      <div class="slide fade">
+        <img src="machine4.jpg" alt="Machine 4">
+      </div>
+
+      <!-- Buttons -->
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Contact us: +254 795 805 814 | kevinatm24@gmail.com</p>
-    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <p>Contact: +254 795 805 814 | kevinatm24@gmail.com</p>
     <p>© 2025 AquaVend Kenya. All Rights Reserved.</p>
   </footer>
+
+
+  <!-- ============ JAVASCRIPT ============ -->
+
+  <script>
+    /* Advanced Slideshow Script */
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    /* Next/Prev */
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    /* Auto-slide */
+    setInterval(() => { plusSlides(1); }, 4000);
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slide");
+
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
