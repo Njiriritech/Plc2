@@ -3,322 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aqua Vend Kenya | Smart Water Vending Machines</title>
-
+  <title>AquaVend Kenya | Smart Water Vending Solutions</title>
   <style>
-    /* Global Style */
-    body {
-      font-family: Arial, sans-serif;
+    /* ============ Reset & Base ============ */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background-color: #f4f8fb;
+      padding: 0;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
       color: #222;
+      background-color: #f4f8fb;
       line-height: 1.6;
-      transition: background 0.4s ease, color 0.4s ease;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    /* DARK MODE */
-    body.dark {
-      background-color: #0d1117;
-      color: #e5e5e5;
-    }
-
-    /* Toggle Button */
-    .toggle-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #0077b6;
+    /* ============ Header / Hero ============ */
+    header.hero {
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
       color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      z-index: 1000;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .toggle-btn:hover {
-      background: #0096c7;
-      transform: scale(1.05);
-    }
-
-    /* Header */
-    header {
-      background: #0096c7;
-      color: white;
-      padding: 2rem 1rem;
+      padding: 4rem 1rem;
       text-align: center;
-      transition: 0.4s ease;
+    }
+    header.hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    header.hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    header.hero .cta-button {
+      background: #caf0f8;
+      color: #0077b6;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+    header.hero .cta-button:hover {
+      transform: scale(1.05);
+      background: #90e0ef;
     }
 
-    body.dark header {
-      background: #003f63;
+    /* ============ Services / Offerings ============ */
+    .services {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
     }
-
-    /* Sections */
-    section {
+    .services h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 2rem;
+    }
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
       padding: 2rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+    .card h3 {
+      color: #00b4d8;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+    }
+
+    /* ============ Why Us / About ============ */
+    .about {
+      background: #caf0f8;
+      padding: 3rem 1rem;
+    }
+    .about h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 1.5rem;
+    }
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1rem;
+    }
+
+    /* ============ Testimonials ============ */
+    .testimonials {
+      padding: 3rem 1rem;
       max-width: 900px;
       margin: auto;
-      background: white;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: 0.4s ease;
     }
-
-    body.dark section {
-      background: #1e1e1e;
-      box-shadow: 0 4px 10px rgba(255,255,255,0.07);
-    }
-
-    /* Titles */
-    h2 {
-      color: #0077b6;
-      margin-bottom: 0.5rem;
-      transition: 0.4s ease;
-    }
-
-    body.dark h2 { color: #63d4ff; }
-
-    /* Aqua Icons */
-    ul {
-      list-style-type: "💧 ";
-      padding-left: 1.2rem;
-    }
-
-    /* ===========================
-       SLIDESHOW (Upgraded)
-       =========================== */
-    .slideshow-container {
-      position: relative;
-      max-width: 100%;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 15px;
-    }
-
-    .slide {
-      display: none;
-      width: 100%;
-    }
-
-    .slide img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-    }
-
-    /* Fade animation */
-    .fade {
-      animation: fadeEffect 1.2s;
-    }
-
-    @keyframes fadeEffect {
-      from { opacity: 0.3; }
-      to { opacity: 1; }
-    }
-
-    /* Navigation Buttons */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      padding: 12px 18px;
-      color: white;
-      font-weight: bold;
-      font-size: 22px;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
-      transition: 0.3s;
-      user-select: none;
-    }
-
-    .next { right: 10px; }
-    .prev { left: 10px; }
-
-    .prev:hover, .next:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    /* Dark mode button styles */
-    body.dark .prev,
-    body.dark .next {
-      background: rgba(255, 255, 255, 0.25);
-      color: #fff;
-    }
-
-    body.dark .prev:hover,
-    body.dark .next:hover {
-      background: rgba(255, 255, 255, 0.45);
-    }
-
-    /* Responsive Buttons */
-    @media (max-width: 600px) {
-      .prev, .next {
-        font-size: 18px;
-        padding: 8px 14px;
-      }
-    }
-
-    /* Contact Section */
-    .contact {
+    .testimonials h2 {
       text-align: center;
-      background: #0096c7;
-      color: white;
-      padding: 2rem 1rem;
+      color: #0077b6;
+      margin-bottom: 2rem;
+    }
+    .testimonial-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: white;
+      padding: 2rem;
       border-radius: 12px;
-      transition: 0.4s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
     }
-
-    body.dark .contact {
-      background: #003f63;
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1rem;
     }
-
-    .contact a {
-      color: white;
+    .testimonial .name {
       font-weight: bold;
-      text-decoration: none;
-      background: #00b4d8;
-      padding: 10px 20px;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 10px;
-      transition: 0.3s ease;
+      text-align: right;
+      color: #0077b6;
     }
 
-    .contact a:hover {
-      background: #48cae4;
+    /* ============ Call to Action ============ */
+    .cta-section {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .cta-section button {
+      background: #0077b6;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .cta-section button:hover {
+      background: #005f8a;
       transform: scale(1.05);
     }
 
-    /* Footer */
+    /* ============ Footer ============ */
     footer {
-      text-align: center;
-      padding: 1rem;
       background: #023e8a;
       color: white;
-      transition: 0.4s ease;
+      padding: 2rem 1rem;
+      text-align: center;
     }
-    body.dark footer { background: #001f3f; }
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    footer a {
+      color: #caf0f8;
+    }
   </style>
 </head>
-
 <body>
 
-  <!-- DARK MODE BUTTON -->
-  <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
-  <header>
+  <!-- HERO / BANNER -->
+  <header class="hero">
     <h1>AquaVend Kenya</h1>
-    <p>Smart, Reliable & Profitable Water Vending Machines</p>
+    <p>Smart & Automated Water Vending Machines for Entrepreneurs and Communities.</p>
+    <button class="cta-button" onclick="location.href='#services'">Explore Services</button>
   </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>
-      At <strong>AquaVend Kenya</strong>, we design and build automated water vending machines
-      that help you run a clean water business efficiently and profitably.
-    </p>
-  </section>
-
-  <section>
-    <h2>Why Choose AquaVend?</h2>
-    <ul>
-      <li>💧 Accurate dispensing — every litre measured precisely.</li>
-      <li>💧 12V energy-efficient system.</li>
-      <li>💧 Adjustable flow for water and cooking oil.</li>
-      <li>💧 Easy setup for small entrepreneurs.</li>
-    </ul>
-  </section>
-
-  <!-- SLIDESHOW SECTION -->
-  <section>
-    <h2>Our Machines</h2>
-    <p>Automatic slideshow with smooth fade and controls:</p>
-
-    <div class="slideshow-container">
-
-      <div class="slide fade">
-        <img src="machine1.jpg" alt="Machine 1">
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <h2>What We Offer</h2>
+    <div class="service-cards">
+      <div class="card">
+        <h3>Machine Sales</h3>
+        <p>We sell high-quality, automated water vending machines tailored for business owners and water kiosks.</p>
       </div>
-
-      <div class="slide fade">
-        <img src="machine2.jpg" alt="Machine 2">
+      <div class="card">
+        <h3>Installation & Setup</h3>
+        <p>Professional installation to help you setup the vending machine and integrate it with your water supply system.</p>
       </div>
-
-      <div class="slide fade">
-        <img src="machine3.jpg" alt="Machine 3">
+      <div class="card">
+        <h3>Maintenance & Repairs</h3>
+        <p>Regular servicing to keep your machine working smoothly and predictably.</p>
       </div>
-
-      <div class="slide fade">
-        <img src="machine4.jpg" alt="Machine 4">
+      <div class="card">
+        <h3>Training & Support</h3>
+        <p>Training on how to use and manage your vending setup, plus customer support when you need it.</p>
       </div>
-      
-        <div class="slide fade">
-        <img src="machine5.jpg" alt="Machine 5">
-      </div>
-
-      <!-- Navigation Buttons -->
-      <a class="prev" onclick="plusSlides(-1)">❮</a>
-      <a class="next" onclick="plusSlides(1)">❯</a>
-
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <p>📞 <strong>+254 795 805 814</strong></p>
-    <p>📧 kevinatm24@gmail.com</p>
-    <a href="https://wa.me/254795805814" target="_blank">Chat on WhatsApp</a>
+  <!-- ABOUT / WHY US -->
+  <section class="about">
+    <h2>Why AquaVend?</h2>
+    <p>
+      At AquaVend Kenya, we are passionate about helping small business owners earn more, provide clean water, and run efficient operations.
+      Our machines combine modern hardware, precision flow control, and durable design to deliver great performance with minimal downtime.
+    </p>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-list">
+      <div class="testimonial">
+        <p>“This vending machine has totally changed our daily water business — customers come daily and it's very reliable.”</p>
+        <div class="name">— Faith M., Kiambu</div>
+      </div>
+      <div class="testimonial">
+        <p>“I installed two units in my community — now people pay per litre and we make a steady income.”</p>
+        <div class="name">— Brian N., Nakuru</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="cta-section">
+    <button onclick="location.href='mailto:kevinatm24@gmail.com'">Request a Demo / Quote</button>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
+    <p>Contact us: +254 795 805 814 | kevinatm24@gmail.com</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     <p>© 2025 AquaVend Kenya. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    /* Dark Mode Toggle + Save State */
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("darkMode", document.body.classList.contains("dark"));
-    }
-
-    if (localStorage.getItem("darkMode") === "true") {
-      document.body.classList.add("dark");
-    }
-
-    /* =====================
-       Slideshow Logic
-       ===================== */
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    /* Auto play (optional) */
-    setInterval(() => {
-      plusSlides(1);
-    }, 4000);
-
-    function showSlides(n) {
-      let i;
-      let slides = document.getElementsByClassName("slide");
-
-      if (n > slides.length) { slideIndex = 1 }
-      if (n < 1) { slideIndex = slides.length }
-
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-
-      slides[slideIndex - 1].style.display = "block";
-    }
-  </script>
 
 </body>
 </html>
